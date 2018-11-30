@@ -53,7 +53,18 @@ class App extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log("share sequence with community");
-
+    const newSequence = this.state.answerPoses;
+    dbRef.push(newSequence);
+    this.setState({
+      answerPoses: {
+        centering: [],
+        warmup: [],
+        salutation: [],
+        balancing: [],
+        twist: [],
+        meditation: []
+      }
+    });
   }
 
   render() {
@@ -70,14 +81,17 @@ class App extends Component {
             <input type="submit" />
           </form>
 
-          {/* <div className="results">
-            {this.state.answerPoses.map((answer, i) => <h1 key={i}>{answer}</h1>)} */}
-          {/* {this.state.answerwarmup.map((answer, i) => <h1 key={i}>{answer}</h1>)}
-            {this.state.answersalutation.map((answer, i) => <h1 key={i}>{answer}</h1>)}
-            {this.state.answerbalancing.map((answer, i) => <h1 key={i}>{answer}</h1>)}
-            {this.state.answertwist.map((answer, i) => <h1 key={i}>{answer}</h1>)}
-            {this.state.answermeditation.map((answer, i) => <h1 key={i}>{answer}</h1>)} */}
-          {/* </div> */}
+          <div className="results">
+  
+            {Object.keys(this.state.answerPoses)
+              .map((keyVal) => {
+                return this.state.answerPoses[keyVal].map((item) => {
+                  console.log(item, "item");
+                  return (<h1 key={item}>{item}</h1>)
+                })
+              }
+              )}
+          </div>
         </div>
       </div>
     );
