@@ -4,10 +4,8 @@ import React from 'react';
 const Sequence = (props) => {
 
     return (
-
         <fieldset id={props.poseKey}>
-            <h2>Section: {props.poseKey}</h2>
-
+            <h2>section: {props.poseKey}</h2>
             {props.posesForSection.map((specificPose) => {
                 return (
                     <div>
@@ -17,7 +15,6 @@ const Sequence = (props) => {
                     </div>
                 )
             })
-
             }
         </fieldset>
     )

@@ -15,38 +15,45 @@ class App extends Component {
     super();
     //special one time set state
     this.state = {
-      answercentering: [],
-      answerwarmup: [],
-      answersalutation: [],
-      answerbalancing: [],
-      answertwist: [],
-      answermeditation: []
+      answerPoses: {
+        centering: [],
+        warmup: [],
+        salutation: [],
+        balancing: [],
+        twist: [],
+        meditation: []
+      }
     };
   };
 
 
-
-
-
   updateUserSequence = (event, poseKey) => {
     console.log("i am hereeee");
-    const stateKey = 'answer' + poseKey;
-    const newPoses = this.state[stateKey];
+    console.log(event.target.value);
+    console.log(poseKey);
+    const newPoses = this.state.answerPoses[poseKey];
 
     if (newPoses.includes(event.target.value)) {
       const poseIndex = newPoses.indexOf(event.target.value);
       newPoses.splice(poseIndex, 1);
+      // console.log(stateKey, "stateKey");
+      console.log(newPoses, "newPoses");
     } else {
       newPoses.push(event.target.value);
     }
     this.setState({
-      [stateKey]: newPoses
+      answerPoses: {
+        ...this.state.answerPoses,
+        [poseKey]: newPoses
+      }
     });
+    console.log("this.state.newPose", newPoses);
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submit, please");
+    console.log("share sequence with community");
+
   }
 
   render() {
@@ -60,18 +67,17 @@ class App extends Component {
               return <Sequence key={`sequence-${i}`} poseKey={key} posesForSection={poses[key]} updateUserSequence={(e) => this.updateUserSequence(e, key)} />
             })
             }
-
             <input type="submit" />
           </form>
-          
-          <div className="results">
-            {this.state.answercentering.map((answer, i) => <h1 key={i}>{answer}</h1>)}
-            {this.state.answerwarmup.map((answer, i) => <h1 key={i}>{answer}</h1>)}
+
+          {/* <div className="results">
+            {this.state.answerPoses.map((answer, i) => <h1 key={i}>{answer}</h1>)} */}
+          {/* {this.state.answerwarmup.map((answer, i) => <h1 key={i}>{answer}</h1>)}
             {this.state.answersalutation.map((answer, i) => <h1 key={i}>{answer}</h1>)}
             {this.state.answerbalancing.map((answer, i) => <h1 key={i}>{answer}</h1>)}
             {this.state.answertwist.map((answer, i) => <h1 key={i}>{answer}</h1>)}
-            {this.state.answermeditation.map((answer, i) => <h1 key={i}>{answer}</h1>)}
-          </div>
+            {this.state.answermeditation.map((answer, i) => <h1 key={i}>{answer}</h1>)} */}
+          {/* </div> */}
         </div>
       </div>
     );
