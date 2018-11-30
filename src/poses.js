@@ -9,3 +9,27 @@ const poses = {
 
 
 export default poses;
+
+// const listOfPoses = [
+//     {
+//         pose: 'Sukasana',
+//         type: 'centering',
+//     },
+//     {
+//         pose: 'Balasana',
+//         type: ''
+//     }
+// ]
+
+
+ // {
+  //   key: '',
+  //   data: {
+  //     answercentering: [],
+  //     answerwarmup: [],
+  //     answersalutation: [],
+  //     answerbalancing: [],
+  //     answertwist: [],
+  //     answermeditation: []
+  //   }
+  // }
