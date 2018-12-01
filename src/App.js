@@ -53,10 +53,24 @@ class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
+    const checkArray1 = Object.keys(this.state.answerPoses);
+    for (let i in checkArray1) {
+      // this.state.answerPoses[checkArray1[i]] 
+      let z1 = document.querySelectorAll("fieldset h2");
+      for (let k = 0; k < z1.length; k++) {
+        if (this.state.answerPoses[checkArray1[i]].length !== 0) {
+          z1[k].style.backgroundColor = "white"; 
+        }
+      }
+    }
+
+
     //check form if a section is blank
     if (this.state.answerPoses['centering'].length !== 0 && this.state.answerPoses['warmup'].length !== 0 && this.state.answerPoses['salutation'].length !== 0 && this.state.answerPoses['balancing'].length !== 0 && this.state.answerPoses['twist'].length !== 0 && this.state.answerPoses['meditation'].length !== 0) {
 
     console.log("share sequence with community");
+
     const newSequence = this.state.answerPoses;
     dbRef.push(newSequence);
     this.setState({
@@ -75,20 +89,15 @@ class App extends Component {
     }
   };
 
-  changeStyle = (props) => {
+  changeStyle = () => {
     const checkArray = Object.keys(this.state.answerPoses);
+
     for (let i in checkArray) {
       if (this.state.answerPoses[checkArray[i]].length == 0) {
         let z = document.querySelectorAll("fieldset h2");
         z[i].style.backgroundColor = "red"; 
       }
     }
-   
-
-    // let x = document.getElementsByClassName("fieldset h2");
-
-    // var myElement = document.querySelector("fieldset h2");
-    // 
   }
 
   render() {
@@ -117,7 +126,7 @@ class App extends Component {
               )}
           </div>
           <div className="alert">
-            {this.state.alert ? this.changeStyle() : null}
+            {/* {this.state.alert ? this.changeStyle() : null} */}
           </div>
         
        
