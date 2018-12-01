@@ -1,14 +1,14 @@
 import React from 'react';
-
+//simple component 
 //have to pass props into Sequence component
 const Sequence = (props) => {
 
     return (
-        <fieldset id={props.poseKey}>
-            <h2>section: {props.poseKey}</h2>
+        <fieldset id={props.poseKey} required="required">
+            <h2 id={props.poseKey}>{props.poseKey}</h2>
             {props.posesForSection.map((specificPose) => {
                 return (
-                    <div key={specificPose + props.poseKey}>
+                    <div className="answerValues" key={specificPose + props.poseKey} >
                         <input id={specificPose + props.poseKey} type="checkbox" value={specificPose} onChange={props.updateUserSequence} />
 
                         <label htmlFor={specificPose + props.poseKey}>{specificPose}</label>
@@ -21,10 +21,6 @@ const Sequence = (props) => {
 }
 export default Sequence;
 
-
-{
-
-}
 
 
 

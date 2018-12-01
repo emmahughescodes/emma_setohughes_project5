@@ -6,6 +6,7 @@ import poses from "./poses";
 
 import firebase from './firebase';
 import Sequence from "./Sequence";
+import Alert from "./Alert";
 //pointing to top level of firebase
 const dbRef = firebase.database().ref();
 
@@ -15,6 +16,7 @@ class App extends Component {
     super();
     //special one time set state
     this.state = {
+      alert: false,
       answerPoses: {
         centering: [],
         warmup: [],
@@ -47,11 +49,13 @@ class App extends Component {
         [poseKey]: newPoses
       }
     });
-    console.log("this.state.newPose", newPoses);
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
+    //check form if a section is blank
+    if (this.state.answerPoses['centering'].length !== 0 && this.state.answerPoses['warmup'].length !== 0 && this.state.answerPoses['salutation'].length !== 0 && this.state.answerPoses['balancing'].length !== 0 && this.state.answerPoses['twist'].length !== 0 && this.state.answerPoses['meditation'].length !== 0) {
+
     console.log("share sequence with community");
     const newSequence = this.state.answerPoses;
     dbRef.push(newSequence);
@@ -63,26 +67,46 @@ class App extends Component {
         balancing: [],
         twist: [],
         meditation: []
+    }})} else {
+      this.setState({
+        alert: true
+      });
+      this.changeStyle();
+    }
+  };
+
+  changeStyle = (props) => {
+    const checkArray = Object.keys(this.state.answerPoses);
+    for (let i in checkArray) {
+      if (this.state.answerPoses[checkArray[i]].length == 0) {
+        let z = document.querySelectorAll("fieldset h2");
+        z[i].style.backgroundColor = "red"; 
       }
-    });
+    }
+   
+
+    // let x = document.getElementsByClassName("fieldset h2");
+
+    // var myElement = document.querySelector("fieldset h2");
+    // 
   }
 
   render() {
     return (
-      <div className="App">
+      <div className="App wrapper">
         <h1>Just Some Poses</h1>
         <div className="posePlanner">
           <form action="" onSubmit={this.handleSubmit}>
-
+            <div className="selection">
             {Object.keys(poses).map((key, i) => {
               return <Sequence key={`sequence-${i}`} poseKey={key} posesForSection={poses[key]} updateUserSequence={(e) => this.updateUserSequence(e, key)} />
             })
             }
-            <input type="submit" />
+            </div>
+            <input className="share" type="submit" value="save sequence"/>
           </form>
-
+        </div>
           <div className="results">
-  
             {Object.keys(this.state.answerPoses)
               .map((keyVal) => {
                 return this.state.answerPoses[keyVal].map((item) => {
@@ -92,10 +116,15 @@ class App extends Component {
               }
               )}
           </div>
-        </div>
+          <div className="alert">
+            {this.state.alert ? this.changeStyle() : null}
+          </div>
+        
+       
       </div>
     );
   }
 }
 
 export default App;
+// {this.state.showCommunityPoses ? <CommunityPoses /> : null}
