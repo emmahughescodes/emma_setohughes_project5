@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {MiniList} from "./MiniList";
+import { MiniList } from "./MiniList";
 
 import firebase from './firebase';
 //pointing to top level of firebase
@@ -12,7 +12,8 @@ export class Community extends Component {
         this.state = {
             sequenceLibrary: {},
             showPoses: false,
-            targetSequence: ""
+            targetSequence: "",
+            colorButton: false
         };
     };
 
@@ -29,19 +30,49 @@ export class Community extends Component {
     }
     //view poses from the community
     handleChange = (e) => {
-        console.log(e.target.id, "target id value");
+        console.log(e.target.id, "target value");
         //if you are not showing any sequences, start showing sequences
         if (this.state.showPoses === false) {
+            this.styleButton(e);
             this.setState({
                 showPoses: true,
-                targetSequence: e.target.id
+                targetSequence: e.target.id,
+                colorButton: true
             });
+            // this.styleButton(e);  
         } else {
             //if you are showing sequences, stop showing sequences
+            this.styleButton(e);
             this.setState({
-                showPoses: false
+                showPoses: false,
+                colorButton: false
             });
+            // this.styleButton(e);
         }
+    }
+    styleButton = (e) => {
+        let z = document.getElementById(`${e.target.id}`);
+        //check if the button is green or white
+        if (this.state.colorButton === true) {
+            z.style.backgroundColor = "white";
+            console.log(this.state.colorButton, "CBT");
+        } else {
+            let j = document.getElementsByClassName(`sequenceButton`);
+            for (let t = 0; t < j.length; t++) {
+                j[t].style.backgroundColor = "white";
+            }
+            this.setState({
+                showPoses: true,
+                colorButton: false
+            });
+            z.style.backgroundColor = "limegreen";
+            console.log(this.state.colorButton, "CBF");
+        }
+    }
+
+    handleRestart = () => {
+        let y = document.getElementsByClassName("communityPoses");
+        y[0].style.display = "none";
     }
 
     render() {
@@ -52,24 +83,22 @@ export class Community extends Component {
                 <section className="buttonContainer">
                     {
                         Object.entries(this.state.sequenceLibrary).map((sequence, i) => {
-                            console.log(sequence);
+                            // console.log(sequence);
                             return (
                                 <div className="buttonDiv" key={sequence[0]}>
                                     <button className="sequenceButton" id={sequence[0]} onClick={this.handleChange} value={sequence[1].title}>{sequence[1].title}</button>
-                                    
                                 </div>
                             )
                         })
-                        
                     }
                     <div className="miniList">
                         {this.state.showPoses ? <MiniList sequenceId={this.state.targetSequence} /> : null}
                     </div>
-
+                </section>
+                <section className="restart">
+                    <button onClick={this.handleRestart}>Contribute More?! <span aria-label="unicorn" role="img">🦄</span></button>
                 </section>
             </div>
         );
     }
 }
-
-{/* <MiniList sequenceId={this.state.targetSequence} /> */}

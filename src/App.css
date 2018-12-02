@@ -91,6 +91,10 @@ fieldset h2 {
   display: inline;
 }
 
+button:focus {
+   outline:none;
+   border:0;
+}
 /* .results {
   width: 45%;
 }
