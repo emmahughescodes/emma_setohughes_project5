@@ -18,7 +18,6 @@ export class Community extends React.Component {
         dbRef.on('value', (snapshot) => {
             console.log(snapshot.val());
             const sequenceLibrary = snapshot.val();
-
         });
     }
 

@@ -9,7 +9,7 @@ const Sequence = (props) => {
             {props.posesForSection.map((specificPose) => {
                 return (
                     <div className="answerValues" key={specificPose + props.poseKey} >
-                        <input id={specificPose + props.poseKey} type="checkbox" value={specificPose} onChange={props.updateUserSequence} />
+                        <input className="inputCheckbox" id={specificPose + props.poseKey} type="checkbox" value={specificPose} onChange={props.updateUserSequence} />
 
                         <label htmlFor={specificPose + props.poseKey}>{specificPose}</label>
                     </div>

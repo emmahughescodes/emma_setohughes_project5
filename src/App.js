@@ -5,7 +5,7 @@ import './App.css';
 import poses from "./poses";
 
 import Sequence from "./Sequence";
-import {Community} from "./Community";
+import { Community } from "./Community";
 
 //firebase
 import firebase from './firebase';
@@ -61,7 +61,7 @@ class App extends Component {
       let z1 = document.querySelectorAll("fieldset h2");
       for (let k = 0; k < z1.length; k++) {
         if (this.state.answerPoses[checkArray1[i]].length !== 0) {
-          z1[k].style.backgroundColor = "white"; 
+          z1[k].style.backgroundColor = "white";
         }
       }
     }
@@ -80,28 +80,35 @@ class App extends Component {
     }
 
     //check form if a section is blank
-    if (this.state.answerPoses['centering'].length !== 0 && this.state.answerPoses['warmup'].length !== 0 && this.state.answerPoses['salutation'].length !== 0 && this.state.answerPoses['balancing'].length !== 0 && this.state.answerPoses['twist'].length !== 0 && this.state.answerPoses['meditation'].length !== 0 && this.state.title !== null) {
+    if (this.state.answerPoses['centering'].length !== 0 && this.state.answerPoses['warmup'].length !== 0 && this.state.answerPoses['salutation'].length !== 0 && this.state.answerPoses['balancing'].length !== 0 && this.state.answerPoses['twist'].length !== 0 && this.state.answerPoses['meditation'].length !== 0 && this.state.title !== "") {
 
-    console.log("share sequence with community");
+      console.log("share sequence with community");
+      const newSequence = this.state.answerPoses;
+      newSequence["title"] = this.state.title;
+      dbRef.push(newSequence);
 
-    const newSequence = this.state.answerPoses;
-    const dbRefTitle = firebase.database().ref(`/${this.state.title}`);
-    dbRefTitle.push(newSequence);
-    this.setState({
-      title: e.target.value,
-      showCommunityPoses: true,
-      answerPoses: {
-        centering: [],
-        warmup: [],
-        salutation: [],
-        balancing: [],
-        twist: [],
-        meditation: []
+      
+
+      this.setState({
+        // title: e.target.value,
+        title: "",
+        showCommunityPoses: true,
+        answerPoses: {
+          centering: [],
+          warmup: [],
+          salutation: [],
+          balancing: [],
+          twist: [],
+          meditation: []
         }
       })
+      const checked = document.getElementsByClassName("inputCheckbox");
+      for (let i = 0; i < checked.length; i++) {
+        checked[i].checked = false;
+      }
     } else {
       this.setState({
-        
+
       })
       this.changeStyle();
     }
@@ -112,7 +119,7 @@ class App extends Component {
     // e.target = input --> use the value property to get the value out
     console.log(e.target.value, "this is e");
     this.setState({
-     title: e.target.value
+      title: e.target.value
     });
   };
 
@@ -121,7 +128,7 @@ class App extends Component {
     for (let i in checkArray) {
       if (this.state.answerPoses[checkArray[i]].length == 0) {
         let z = document.querySelectorAll("fieldset h2");
-        z[i].style.backgroundColor = "red"; 
+        z[i].style.backgroundColor = "red";
       }
     }
   }
@@ -133,28 +140,28 @@ class App extends Component {
         <div className="posePlanner">
           <form action="" onSubmit={this.handleSubmit}>
             <div className="selection">
-            {Object.keys(poses).map((key, i) => {
-              return <Sequence key={`sequence-${i}`} poseKey={key} posesForSection={poses[key]} updateUserSequence={(e) => this.updateUserSequence(e, key)} />
-            })
-            }
+              {Object.keys(poses).map((key, i) => {
+                return <Sequence key={`sequence-${i}`} poseKey={key} posesForSection={poses[key]} updateUserSequence={(e) => this.updateUserSequence(e, key)} />
+              })
+              }
             </div>
-            <input className="title" onChange={this.handleChange} placeholder="Sequence Title" type="text" value={this.state.title}/>
-            <input className="share" type="submit" value="save sequence"/>
+            <input className="title" onChange={this.handleChange} placeholder="Sequence Title" type="text" value={this.state.title} />
+            <input className="share" type="submit" value="save sequence" />
           </form>
         </div>
-          <div className="results">
-            {Object.keys(this.state.answerPoses)
-              .map((keyVal) => {
-                return this.state.answerPoses[keyVal].map((item) => {
-                  console.log(item, "item");
-                  return (<h1 key={item}>{item}</h1>)
-                })
-              }
-              )}
-          </div>
-          <div className="communityPoses">
-            {this.state.showCommunityPoses ? <Community /> : null}  
-          </div>       
+        <div className="results">
+          {Object.keys(this.state.answerPoses)
+            .map((keyVal) => {
+              return this.state.answerPoses[keyVal].map((item) => {
+                console.log(item, "item");
+                return (<h1 key={item}>{item}</h1>)
+              })
+            }
+            )}
+        </div>
+        <div className="communityPoses">
+          {this.state.showCommunityPoses ? <Community /> : null}
+        </div>
       </div>
     );
   }
