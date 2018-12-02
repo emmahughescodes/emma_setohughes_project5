@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import poses from "./poses";
 // import answerPoses from "./answerPoses";
+import poses from "./poses";
 
-import firebase from './firebase';
 import Sequence from "./Sequence";
-import Alert from "./Alert";
+import {Community} from "./Community";
+
+//firebase
+import firebase from './firebase';
 //pointing to top level of firebase
 const dbRef = firebase.database().ref();
-
 
 class App extends Component {
   constructor() {
     super();
     //special one time set state
     this.state = {
-      alert: false,
+      title: "",
+      warning: false,
+      showCommunityPoses: false,
       answerPoses: {
         centering: [],
         warmup: [],
@@ -28,7 +31,6 @@ class App extends Component {
     };
   };
 
-
   updateUserSequence = (event, poseKey) => {
     console.log("i am hereeee");
     console.log(event.target.value);
@@ -38,7 +40,6 @@ class App extends Component {
     if (newPoses.includes(event.target.value)) {
       const poseIndex = newPoses.indexOf(event.target.value);
       newPoses.splice(poseIndex, 1);
-      // console.log(stateKey, "stateKey");
       console.log(newPoses, "newPoses");
     } else {
       newPoses.push(event.target.value);
@@ -53,7 +54,7 @@ class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
+    //update incomplete highlighted red titles
     const checkArray1 = Object.keys(this.state.answerPoses);
     for (let i in checkArray1) {
       // this.state.answerPoses[checkArray1[i]] 
@@ -65,15 +66,30 @@ class App extends Component {
       }
     }
 
+    //check if title is empty
+    if (this.state.title == "") {
+      console.log("where you at, title");
+      this.setState({
+        warning: true
+      })
+      let t = document.querySelector(".title");
+      t.style.backgroundColor = "red";
+    } else {
+      let t = document.querySelector(".title");
+      t.style.backgroundColor = "white";
+    }
 
     //check form if a section is blank
-    if (this.state.answerPoses['centering'].length !== 0 && this.state.answerPoses['warmup'].length !== 0 && this.state.answerPoses['salutation'].length !== 0 && this.state.answerPoses['balancing'].length !== 0 && this.state.answerPoses['twist'].length !== 0 && this.state.answerPoses['meditation'].length !== 0) {
+    if (this.state.answerPoses['centering'].length !== 0 && this.state.answerPoses['warmup'].length !== 0 && this.state.answerPoses['salutation'].length !== 0 && this.state.answerPoses['balancing'].length !== 0 && this.state.answerPoses['twist'].length !== 0 && this.state.answerPoses['meditation'].length !== 0 && this.state.title !== null) {
 
     console.log("share sequence with community");
 
     const newSequence = this.state.answerPoses;
-    dbRef.push(newSequence);
+    const dbRefTitle = firebase.database().ref(`/${this.state.title}`);
+    dbRefTitle.push(newSequence);
     this.setState({
+      title: e.target.value,
+      showCommunityPoses: true,
       answerPoses: {
         centering: [],
         warmup: [],
@@ -81,17 +97,27 @@ class App extends Component {
         balancing: [],
         twist: [],
         meditation: []
-    }})} else {
+        }
+      })
+    } else {
       this.setState({
-        alert: true
-      });
+        
+      })
       this.changeStyle();
     }
   };
 
+  handleChange = (e) => {
+    //event happened and then looking at event Obj to see what happened
+    // e.target = input --> use the value property to get the value out
+    console.log(e.target.value, "this is e");
+    this.setState({
+     title: e.target.value
+    });
+  };
+
   changeStyle = () => {
     const checkArray = Object.keys(this.state.answerPoses);
-
     for (let i in checkArray) {
       if (this.state.answerPoses[checkArray[i]].length == 0) {
         let z = document.querySelectorAll("fieldset h2");
@@ -112,6 +138,7 @@ class App extends Component {
             })
             }
             </div>
+            <input className="title" onChange={this.handleChange} placeholder="Sequence Title" type="text" value={this.state.title}/>
             <input className="share" type="submit" value="save sequence"/>
           </form>
         </div>
@@ -125,15 +152,12 @@ class App extends Component {
               }
               )}
           </div>
-          <div className="alert">
-            {/* {this.state.alert ? this.changeStyle() : null} */}
-          </div>
-        
-       
+          <div className="communityPoses">
+            {this.state.showCommunityPoses ? <Community /> : null}  
+          </div>       
       </div>
     );
   }
 }
 
 export default App;
-// {this.state.showCommunityPoses ? <CommunityPoses /> : null}
