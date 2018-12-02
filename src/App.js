@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 // import answerPoses from "./answerPoses";
 import poses from "./poses";
@@ -67,7 +67,7 @@ class App extends Component {
     }
 
     //check if title is empty
-    if (this.state.title == "") {
+    if (this.state.title === "") {
       console.log("where you at, title");
       this.setState({
         warning: true
@@ -87,7 +87,7 @@ class App extends Component {
       newSequence["title"] = this.state.title;
       dbRef.push(newSequence);
 
-      
+
 
       this.setState({
         // title: e.target.value,
@@ -126,7 +126,7 @@ class App extends Component {
   changeStyle = () => {
     const checkArray = Object.keys(this.state.answerPoses);
     for (let i in checkArray) {
-      if (this.state.answerPoses[checkArray[i]].length == 0) {
+      if (this.state.answerPoses[checkArray[i]].length === 0) {
         let z = document.querySelectorAll("fieldset h2");
         z[i].style.backgroundColor = "red";
       }

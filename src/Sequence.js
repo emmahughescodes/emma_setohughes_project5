@@ -10,7 +10,6 @@ const Sequence = (props) => {
                 return (
                     <div className="answerValues" key={specificPose + props.poseKey} >
                         <input className="inputCheckbox" id={specificPose + props.poseKey} type="checkbox" value={specificPose} onChange={props.updateUserSequence} />
-
                         <label htmlFor={specificPose + props.poseKey}>{specificPose}</label>
                     </div>
                 )
