@@ -23,9 +23,9 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
   color: white;
 }
 
-body {
+/* body {
   text-align: center;
-}
+} */
 
 .App {
   background-color: #D1C8C4;
@@ -74,7 +74,13 @@ body {
   color: #3E4E59;
   font-size: 4.5rem;
   background-color: #D1C8C4;
+  text-align: center;
+  padding-top: 10px;
 } 
+
+.App h2 {
+  text-align: center;
+}
 
 .community h1 {
   font-family: 'Reenie Beanie', cursive;
@@ -94,7 +100,7 @@ fieldset {
   display: inline-block;
   width: calc(100% / 3);
   margin: 0 0;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 
 fieldset h2 {
@@ -160,21 +166,36 @@ button:focus {
   color: #3E4E59;
 }
 
+.contentContainer {
+  margin-top: 30px;
+  display: block;
+}
+
 .content {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  /* font-family: 'Reenie Beanie', cursive; */
   font-size: 1.6rem;
 }
 
-.listitem {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.content p {
+  margin: 0;
+}
+
+.buttonContainer {
+  align-items: flex-start;
 }
 
 
+.restart {
+  text-align: center;
+  padding: 25px 0;
+}
+
+.buttonHover:hover {
+  background-color: #C3E7F1;
+}
 
 /* MEDIA QUERIES BEGIN */
 
@@ -191,7 +212,7 @@ button:focus {
     /* background-color: pink; */
     width: 90%;
     margin: 0 auto;
-    border: 1px solid black;
+    
   }
 
   fieldset {

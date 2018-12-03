@@ -150,7 +150,7 @@ class App extends Component {
             </div>
             <div className="infoFields">
               <input className="title" onChange={this.handleChange} placeholder="sequence title" type="text" value={this.state.title} />
-              <input className="sequenceButton" type="submit" value="share" />
+              <input className="sequenceButton buttonHover" type="submit" value="share" />
             </div>
           </form>
         </div>

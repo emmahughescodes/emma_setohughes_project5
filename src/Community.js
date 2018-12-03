@@ -90,12 +90,13 @@ export class Community extends Component {
                             )
                         })
                     }
-                    <div className="miniList">
-                        {this.state.showPoses ? <MiniList sequenceId={this.state.sequenceLibrary[this.state.targetSequence]} /> : null}
-                    </div>
+                    
                 </section>
+                <div className="miniList">
+                    {this.state.showPoses ? <MiniList sequenceId={this.state.sequenceLibrary[this.state.targetSequence]} /> : null}
+                </div>
                 <section className="restart">
-                    <button className="sequenceButton" onClick={this.handleRestart}>Contribute More?! <span aria-label="unicorn" role="img">🦄</span></button>
+                    <button className="sequenceButton buttonHover" onClick={this.handleRestart}>Contribute More?! <span aria-label="unicorn" role="img">🦄</span></button>
                 </section>
             </div>
         );
