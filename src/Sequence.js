@@ -19,8 +19,3 @@ const Sequence = (props) => {
     )
 }
 export default Sequence;
-
-
-
-
-// return <button value={specificPose} onClick={props.updateUserSequence}>{specificPose}</button>

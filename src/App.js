@@ -4,6 +4,8 @@ import './App.css';
 // import answerPoses from "./answerPoses";
 import poses from "./poses";
 
+// import Background from '/assets/rocks.jpg';
+
 import Sequence from "./Sequence";
 import { Community } from "./Community";
 
@@ -162,7 +164,7 @@ class App extends Component {
             }
             )}
         </div> */}
-        <div className="communityPoses">
+        <div className="communityPoses wrapper">
           {this.state.showCommunityPoses ? <Community /> : null}
         </div>
       </div>

@@ -82,7 +82,7 @@ export class Community extends Component {
                 <section className="buttonContainer">
                     {
                         Object.entries(this.state.sequenceLibrary).map((sequence, i) => {
-                            // console.log(sequence);
+                            console.log(sequence);
                             return (
                                 <div className="buttonDiv" key={sequence[0]}>
                                     <button className="sequenceButton" id={sequence[0]} onClick={this.handleChange} value={sequence[1].title}>{sequence[1].title}</button>
@@ -91,7 +91,7 @@ export class Community extends Component {
                         })
                     }
                     <div className="miniList">
-                        {this.state.showPoses ? <MiniList sequenceId={this.state.targetSequence} /> : null}
+                        {this.state.showPoses ? <MiniList sequenceId={this.state.sequenceLibrary[this.state.targetSequence]} /> : null}
                     </div>
                 </section>
                 <section className="restart">
@@ -102,4 +102,4 @@ export class Community extends Component {
     }
 }
 
-{/* <span aria-label="heart" role="img">❤️</span> */}
+

@@ -23,10 +23,12 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
   color: white;
 }
 
-.App {
+body {
   text-align: center;
-  background-image: url("/assets/rocks.jpg");
-  background-position: center;
+}
+
+.App {
+  background-color: #D1C8C4;
 }
 
 .App-link {
@@ -49,33 +51,34 @@ html {
 }
 
 body {
-  background-color: #D1C8C4;
-}
-
+  background-image: url("./assets/rocks.jpg");
+  background-size: cover;
+  background-position: center;
+} 
 
 .wrapper {
   max-width: 1280px;
   width: 80%;
   margin: 0 auto;
-  border: 1px solid tomato;
-
 }
 
 .posePlanner {
+  background-color: #D1C8C4;
   display: flex;
   text-align: center;
   margin: 0 auto;
 }
 
 .App h1 {
-  /* font-family: 'karma', serif; */
-  /* font-family: 'Cinzel', serif; */
-  font-family: 'Reenie Beanie', cursive;
-  /* font-weight: bold; */
+  font-family: 'karma', serif;
   color: #3E4E59;
   font-size: 4.5rem;
+  background-color: #D1C8C4;
 } 
 
+.community h1 {
+  font-family: 'Reenie Beanie', cursive;
+}
 .selection {
   width: 80%;
   margin: 0 auto;
@@ -89,7 +92,6 @@ form {
 fieldset {
   border: 1px solid #3E4E59;
   display: inline-block;
-  /* margin: 5px; */
   width: calc(100% / 3);
   margin: 0 0;
   font-size: 1.5rem;
@@ -127,6 +129,7 @@ fieldset h2 {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .title {
@@ -150,20 +153,26 @@ button:focus {
 
 .App h2 {
   font-size: 1.8rem;
-  color: #F25652;
+  color: #DC1A15;;
 }
 
 .selection h2 {
   color: #3E4E59;
 }
-/* .results {
-  width: 45%;
+
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* font-family: 'Reenie Beanie', cursive; */
+  font-size: 1.6rem;
 }
 
-.results h1 {
-  display: block;
-} */
-
+.listitem {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
 
 
