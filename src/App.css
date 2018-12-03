@@ -6,9 +6,6 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 
-.App {
-  text-align: center;
-}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -26,6 +23,12 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
   color: white;
 }
 
+.App {
+  text-align: center;
+  background-image: url("/assets/rocks.jpg");
+  background-position: center;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -39,6 +42,15 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
   }
 }
 
+@import url('https://fonts.googleapis.com/css?family=Cinzel|Karma|Reenie+Beanie');
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #D1C8C4;
+}
 
 
 .wrapper {
@@ -51,30 +63,46 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
 .posePlanner {
   display: flex;
+  text-align: center;
   margin: 0 auto;
 }
+
+.App h1 {
+  /* font-family: 'karma', serif; */
+  /* font-family: 'Cinzel', serif; */
+  font-family: 'Reenie Beanie', cursive;
+  /* font-weight: bold; */
+  color: #3E4E59;
+  font-size: 4.5rem;
+} 
 
 .selection {
   width: 80%;
   margin: 0 auto;
 }
 
+form {
+  margin: 0 auto;
+  margin-bottom: 5%;
+}
+
 fieldset {
-  border: 1px solid pink;
+  border: 1px solid #3E4E59;
   display: inline-block;
   /* margin: 5px; */
   width: calc(100% / 3);
   margin: 0 0;
+  font-size: 1.5rem;
 }
 
 fieldset h2 {
   display: flex;
   justify-content: flex-start;
+  font-family: 'karma', serif;
+  color: #3E4E59;
 }
 
 .answerValues {
-  /* border: none; */
-  
   display: flex;
   justify-content: flex-start;
 }
@@ -87,13 +115,46 @@ fieldset h2 {
 }
 
 .sequenceButton {
-  color: red;
+  color: #3E4E59;
   display: inline;
+  font-size: 1.6rem;
+  margin: 2px;
+  border-radius: 0px;
+  border: none;
+}
+
+.infoFields {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.title {
+  border: none;
+  font-size: 1.6rem;
+  margin: 2px 0;
+}
+
+.title::placeholder {
+  font-size: 1.6rem;
 }
 
 button:focus {
    outline:none;
    border:0;
+}
+
+.community h2, .App h2 {
+  font-family: 'karma', serif;
+}
+
+.App h2 {
+  font-size: 1.8rem;
+  color: #F25652;
+}
+
+.selection h2 {
+  color: #3E4E59;
 }
 /* .results {
   width: 45%;
@@ -155,4 +216,10 @@ button:focus {
     justify-content: center;
   }
 
+}
+
+@media (max-width: 330px) {
+  .title {
+    width: 66%;
+  }
 }

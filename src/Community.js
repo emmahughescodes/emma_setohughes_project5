@@ -65,20 +65,19 @@ export class Community extends Component {
                 showPoses: true,
                 colorButton: false
             });
-            z.style.backgroundColor = "limegreen";
+            z.style.backgroundColor = "#C3E7F1";
             console.log(this.state.colorButton, "CBF");
         }
     }
 
     handleRestart = () => {
-        let y = document.getElementsByClassName("communityPoses");
-        y[0].style.display = "none";
+        window.location.reload();
     }
 
     render() {
         return (
-            <div className="Community">
-                <h1>Thank you for sharing <span aria-label="heart" role="img">❤️</span></h1>
+            <div className="community">
+                <h1>Thanks for sharing xo</h1>
                 <h2>View other sequences in the community</h2>
                 <section className="buttonContainer">
                     {
@@ -96,9 +95,11 @@ export class Community extends Component {
                     </div>
                 </section>
                 <section className="restart">
-                    <button onClick={this.handleRestart}>Contribute More?! <span aria-label="unicorn" role="img">🦄</span></button>
+                    <button className="sequenceButton" onClick={this.handleRestart}>Contribute More?! <span aria-label="unicorn" role="img">🦄</span></button>
                 </section>
             </div>
         );
     }
 }
+
+{/* <span aria-label="heart" role="img">❤️</span> */}

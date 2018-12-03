@@ -61,7 +61,7 @@ class App extends Component {
       let z1 = document.querySelectorAll("fieldset h2");
       for (let k = 0; k < z1.length; k++) {
         if (this.state.answerPoses[checkArray1[i]].length !== 0) {
-          z1[k].style.backgroundColor = "white";
+          z1[k].style.backgroundColor = "#D1C8C4";
         }
       }
     }
@@ -73,7 +73,7 @@ class App extends Component {
         warning: true
       })
       let t = document.querySelector(".title");
-      t.style.backgroundColor = "red";
+      t.style.backgroundColor = "#EF5756";
     } else {
       let t = document.querySelector(".title");
       t.style.backgroundColor = "white";
@@ -128,7 +128,7 @@ class App extends Component {
     for (let i in checkArray) {
       if (this.state.answerPoses[checkArray[i]].length === 0) {
         let z = document.querySelectorAll("fieldset h2");
-        z[i].style.backgroundColor = "red";
+        z[i].style.backgroundColor = "#EF5756";
       }
     }
   }
@@ -136,7 +136,8 @@ class App extends Component {
   render() {
     return (
       <div className="App wrapper">
-        <h1>Just Some Poses</h1>
+        <h1>The Yoga Library</h1>
+        <h2>A place to share sequences with other yogis</h2>
         <div className="posePlanner">
           <form action="" onSubmit={this.handleSubmit}>
             <div className="selection">
@@ -145,11 +146,13 @@ class App extends Component {
               })
               }
             </div>
-            <input className="title" onChange={this.handleChange} placeholder="Sequence Title" type="text" value={this.state.title} />
-            <input className="share" type="submit" value="save sequence" />
+            <div className="infoFields">
+              <input className="title" onChange={this.handleChange} placeholder="sequence title" type="text" value={this.state.title} />
+              <input className="sequenceButton" type="submit" value="share" />
+            </div>
           </form>
         </div>
-        <div className="results">
+        {/* <div className="results">
           {Object.keys(this.state.answerPoses)
             .map((keyVal) => {
               return this.state.answerPoses[keyVal].map((item) => {
@@ -158,7 +161,7 @@ class App extends Component {
               })
             }
             )}
-        </div>
+        </div> */}
         <div className="communityPoses">
           {this.state.showCommunityPoses ? <Community /> : null}
         </div>
