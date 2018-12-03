@@ -5,21 +5,6 @@ import firebase from './firebase';
 
 
 export const MiniList = (props) => {
-
-    // function getSequence () {
-    //     const dbRefGet = firebase.database().ref(`/${props.sequenceId}`);
-    //     //what does 'value' mean?
-    //     dbRefGet.on('value', (data) => {
-    //     const sequenceData = data.val();
-    //     return sequenceData;
-        // list the wardrobe items from firebase for the specified climate and display them for the user
-        // for (key in myApp.wardrobe) {
-        //     $('.wardrobeList').append(`<li>${myApp.wardrobe[key]}</li>`);
-        // }
-        // });
-    // }
-
-
     
     return (
         <div className="contentContainer">
@@ -59,13 +44,7 @@ export const MiniList = (props) => {
                 })}
             </div>
         </div>
-        // <div>
-            
-        //     <p>There are {props.inventory} donuts left.</p>
-        //     <button value={props.id} onClick={props.updateInventory} disabled={isDisabled()}>Buy a donut</button>
-        // </div>
     )
-
     }
 
 
